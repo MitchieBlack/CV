@@ -3,47 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Letter from Kennedy Received</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+    <title>Letter from Kennedy Hale</title>
 
-        body { 
-            text-align: center; 
-            font-family: 'Special Elite', cursive; 
-            background: url('https://i.imgur.com/VwsOUcm.jpg') no-repeat center center fixed; 
-            background-size: cover;
-            color: #ffe6c7;
+    <!-- Include Google Font 'Rock Salt' (Western-style font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
+    <style>
+        /* Fullscreen initial letter image */
+        #fullScreenImage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures it fills the screen */
+            z-index: 10; /* Ensures it's on top of other elements */
         }
-        h2 { text-shadow: 2px 2px 5px black; }
-        #envelope { width: 250px; cursor: pointer; border: 5px solid #8b4513; border-radius: 10px; }
-        #popup { 
-            display: none; 
-            position: fixed; 
-            top: 50%; 
-            left: 50%; 
+
+        /* Centered text on top of the letter image */
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9); 
-            padding: 20px; 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-            border: 3px solid #8b4513;
+            text-align: center;
+            font-size: 24px;
+            color: white;
+            font-family: 'Rock Salt', cursive; /* Apply the western font */
+            z-index: 20;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
-        #popup img { width: 350px; border: 4px solid #fff; }
-        #close { 
-            cursor: pointer; 
-            color: red; 
-            font-size: 20px; 
-            display: block; 
-            margin-bottom: 10px; 
-            font-weight: bold;
+
+        /* "Cut open letter" button styling */
+        #cutOpenLetter {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Background music (autoplay, 5% volume) */
+        audio {
+            display: none;
+        }
+
+        /* Fullscreen letter to be displayed after clicking "Cut open letter" */
+        #letterImage {
+            display: none; /* Hidden initially */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black; /* Black background */
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Fade in */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #letterImage img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* Download message styling */
+        #downloadMessage {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: white;
+            font-family: 'Rock Salt', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            z-index: 20;
+        }
+
+        #downloadLink {
+            font-size: 18px;
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <h2>Click the Letter, Partner...</h2>
-    <img id="envelope" src="https://i.imgur.com/p6zyxdU.png" alt="Old Western Letter">
-    
-    <div id="popup">
-        <span id="close">✖ Close</span>
-        <img src="https://i.imgur.com/p6zyxdU.png" alt="Invitation">
+    <!-- Background music -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="https://files.catbox.moe/zve202.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Fullscreen initial letter image -->
+    <img id="fullScreenImage" src="https://i.postimg.cc/7L8fMyRC/letter.png" alt="Telegram Letter">
+
+    <!-- Centered message on top of the letter image -->
+    <div id="message">
+        <p>Letter received by Kennedy Hale to Alton Slade</p>
+        <p id="cutOpenLetter" onclick="showLetter()">Cut open letter</p>
     </div>
+
+    <!-- The letter to be displayed after clicking -->
+    <div id="letterImage">
+        <img src="https://i.postimg.cc/ZqH4Btzz/Kennedy-Hale.png" alt="Letter to Read">
+    </div>
+
+    <!-- Download message below the letter -->
+    <div id="downloadMessage" style="display:none;">
+        <!-- This link will directly prompt the download of the image -->
+        <a id="downloadLink" href="https://i.postimg.cc/ZqH4Btzz/Kennedy-Hale.png" download="Kennedy-Hale-Letter.png">
+            Put the letter in your pocket
+        </a>
+    </div>
+
+    <script>
+        // Set the background music volume to 5%
+        document.getElementById('bgMusic').volume = 0.05;
+
+        // Function to show the letter when the user clicks on "Cut open letter"
+        function showLetter() {
+            // Hide the initial letter and message
+            document.getElementById("fullScreenImage").style.display = "none";
+            document.getElementById("message").style.display = "none";
+
+            // Show the letter with fade-in effect
+            let letterImage = document.getElementById("letterImage");
+            letterImage.style.display = "flex"; // Make it visible
+            setTimeout(() => {
+                letterImage.style.opacity = 1; // Fade in the letter
+            }, 50); // Small delay to trigger opacity transition
+
+            // Show the download message immediately after clicking
+            document.getElementById("downloadMessage").style.display = "block"; // Show download message
+        }
+    </script>
+
+</body>
+</html>
