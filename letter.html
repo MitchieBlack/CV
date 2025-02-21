@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Dead Invitation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+        body { 
+            text-align: center; 
+            font-family: 'Special Elite', cursive; 
+            background: url('https://imgur.com/a/VwsOUcm') no-repeat center center fixed; 
+            background-size: cover;
+            color: #ffe6c7;
+        }
+        h2 { text-shadow: 2px 2px 5px black; }
+        #envelope { width: 250px; cursor: pointer; border: 5px solid #8b4513; border-radius: 10px; }
+        #popup { 
+            display: none; 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9); 
+            padding: 20px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+            border: 3px solid #8b4513;
+        }
+        #popup img { width: 350px; border: 4px solid #fff; }
+        #close { 
+            cursor: pointer; 
+            color: red; 
+            font-size: 20px; 
+            display: block; 
+            margin-bottom: 10px; 
+            font-weight: bold;
+        }
+        audio { margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h2>You received a letter..</h2>
+    <img id="envelope" src="https://imgur.com/a/VwsOUcm" alt="Old Western Letter">
+    
+    <div id="popup">
+        <span id="close">✖ Close</span>
+        <img src="https://imgur.com/a/p6zyxdU" alt="Invitation">
+        <audio controls autoplay>
+            <source src="https://files.catbox.moe/zve202.mp3" type="audio/mpeg">
+            Your browser does not support audio.
+        </audio>
+    </div>
+
+    <script>
+        document.getElementById("envelope").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "block";
+        });
+        document.getElementById("close").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>
